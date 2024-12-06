@@ -23,7 +23,7 @@ if [ ! -f ${TLD}/zlib-1.2.8/libz.a ];
 then
     cd ${TLD}
     rm -rf ${TLD}/zlib-1.2.8
-    tar xzf ${DIR}/zlib-1.2.8.tar.gz
+    tar xzf ${DIR}/zlib-1.2.8.tar.gz --no-same-owner
     cd zlib-1.2.8
     ./configure --prefix ${ISD}
     make -j4
@@ -38,7 +38,7 @@ then
     then
         cd ${TLD}
         rm -rf ${TLD}/boost_subset_1_58_0
-        tar xjf ${DIR}/boost_subset_1_58_0.tar.bz2
+        tar xjf ${DIR}/boost_subset_1_58_0.tar.bz2 --no-same-owner
         cd boost_subset_1_58_0
         ./bootstrap.sh
         ./b2 link=static -j4 --prefix=$ISD -sZLIB_SOURCE=$TLD
@@ -54,7 +54,7 @@ if [ ! -d ${ISD}/include/htslib ] ;
 then
     cd ${TLD}
     rm -rf ${TLD}/htslib
-    tar xzf ${DIR}/htslib.tar.gz
+    tar xzf ${DIR}/htslib.tar.gz --no-same-owner
     cd htslib
     ./configure --prefix=${ISD} \
         CFLAGS=-I${ISD}/include\ -g \
@@ -80,7 +80,7 @@ if [ ! -f ${ISD}/bin/bcftools ];
 then
     cd ${TLD}
     rm -rf ${TLD}/bcftools
-    tar xzf ${DIR}/bcftools.tar.gz
+    tar xzf ${DIR}/bcftools.tar.gz --no-same-owner
     cd bcftools
     make -j4 prefix=${ISD}
     make -j4 prefix=${ISD} install
@@ -92,7 +92,7 @@ if [ ! -f ${ISD}/bin/samtools ];
 then
     cd ${TLD}
     rm -rf ${TLD}/samtools
-    tar xzf ${DIR}/samtools.tar.gz
+    tar xzf ${DIR}/samtools.tar.gz --no-same-owner
     cd samtools
     autoconf -Wno-syntax || autoconf -Wno-syntax
     ./configure --prefix=${ISD} \
@@ -116,7 +116,7 @@ if [[ ! -z $BUILD_VCFEVAL ]]; then
         mkdir -p ${TLD}/rtg-tools
         cd rtg-tools
         wget http://github.com/RealTimeGenomics/rtg-tools/archive/3.12.1.tar.gz -O ${TLD}/rtg-tools/rtg-tools.tar.gz
-        tar xvf rtg-tools.tar.gz
+        tar xvf rtg-tools.tar.gz --no-same-owner
         cd rtg-tools-3.12.1
 
         if [[ ! -z ${ANT_HOME} ]]; then
